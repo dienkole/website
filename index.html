@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tra cứu Ngành Bảo vệ Thực vật - Nông nghiệp thông minh</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style>
+    :root {
+      color-scheme: light;
+    }
+
+    /* Nền cánh đồng và bầu trời */
+    .hero-field {
+      background: linear-gradient(to top, #16a34a 0%, #22c55e 35%, #86efac 45%, #e0f2fe 100%);
+    }
+
+    .field-horizon {
+      background: radial-gradient(circle at 50% 120%, #16a34a 0, #14532d 55%, #052e16 100%);
+    }
+
+    /* Cây trồng minh họa */
+    .crop-badge {
+      box-shadow: 0 14px 30px rgba(15, 118, 110, 0.35);
+    }
+
+    /* Thiên địch bay */
+    @keyframes fly-horizontal {
+      0% { transform: translateX(-10%) translateY(0); }
+      50% { transform: translateX(110%) translateY(-20px); }
+      100% { transform: translateX(-10%) translateY(0); }
+    }
+
+    @keyframes fly-horizontal-reverse {
+      0% { transform: translateX(110%) translateY(0); }
+      50% { transform: translateX(-10%) translateY(20px); }
+      100% { transform: translateX(110%) translateY(0); }
+    }
+
+    @keyframes float-slow {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .enemy {
+      position: absolute;
+      font-size: 1.4rem;
+      filter: drop-shadow(0 4px 6px rgba(22, 101, 52, 0.4));
+      pointer-events: none;
+    }
+
+    .enemy-1 {
+      top: 18%;
+      left: -5%;
+      animation: fly-horizontal 32s linear infinite;
+    }
+
+    .enemy-2 {
+      top: 8%;
+      left: 10%;
+      animation: fly-horizontal-reverse 40s linear infinite;
+      animation-delay: -8s;
+    }
+
+    .enemy-3 {
+      top: 26%;
+      left: -8%;
+      animation: fly-horizontal 36s linear infinite;
+      animation-delay: -12s;
+    }
+
+    .enemy-4 {
+      top: 12%;
+      left: 60%;
+      animation: float-slow 7s ease-in-out infinite;
+    }
+
+    .enemy-5 {
+      top: 30%;
+      left: 80%;
+      animation: float-slow 9s ease-in-out infinite;
+    }
+
+    /* Thanh cuộn mượt */
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-sky-100 via-emerald-100 to-emerald-200 text-slate-900">
+  <div class="mx-auto max-w-6xl px-4 pb-12 pt-6 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <header class="flex flex-col gap-4 border-b border-emerald-200 pb-6 sm:flex-row sm:items-center sm:justify-between">
+      <div>
+        <p class="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-emerald-700 ring-1 ring-emerald-200">
+          <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100 text-lg">🌱</span>
+          Ngành Bảo vệ Thực vật · Nông nghiệp thông minh
+        </p>
+        <h1 class="mt-3 text-balance text-3xl font-extrabold leading-tight text-emerald-900 sm:text-4xl">
+          Cổng tra cứu <span class="text-emerald-600">thuốc Bảo vệ Thực vật</span>
+        </h1>
+        <p class="mt-2 max-w-2xl text-sm text-slate-600 sm:text-base">
+          Tập trung vào sử dụng thuốc khoa học, an toàn và thân thiện môi trường, kết hợp công nghệ số và hệ sinh thái thiên địch
+          để hướng tới <span class="font-semibold text-emerald-700">nông nghiệp xanh – nông nghiệp thông minh</span>.
+        </p>
+      </div>
+      <div class="mt-2 flex gap-3 sm:mt-0 sm:flex-col sm:items-end">
+        <a href="#tra-cuu" class="inline-flex items-center justify-center rounded-full bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-md shadow-emerald-400/40 transition hover:bg-emerald-700">
+          Bắt đầu tra cứu
+        </a>
+        <p class="text-xs text-slate-500 sm:text-right">
+          Chủ đề: <span class="font-semibold text-emerald-700">NÔNG NGHIỆP THÔNG MINH</span>
+        </p>
+      </div>
+    </header>
+
+    <!-- Hero cánh đồng & thiên địch -->
+    <section class="mt-6">
+      <div class="relative overflow-hidden rounded-3xl border border-emerald-200 bg-white/50 shadow-xl shadow-emerald-200/60">
+        <!-- Bầu trời & cánh đồng -->
+        <div class="hero-field relative h-72 w-full sm:h-80 md:h-96">
+          <!-- mặt trời -->
+          <div class="pointer-events-none absolute -top-10 right-10 h-32 w-32 rounded-full bg-yellow-300/80 blur-sm"></div>
+          <!-- đường chân trời tối hơn -->
+          <div class="field-horizon absolute bottom-0 left-0 right-0 h-1/2 opacity-70"></div>
+
+          <!-- Thiên địch bay -->
+          <span class="enemy enemy-1" aria-hidden="true">🐞</span>
+          <span class="enemy enemy-2" aria-hidden="true">🐝</span>
+          <span class="enemy enemy-3" aria-hidden="true">🦋</span>
+          <span class="enemy enemy-4" aria-hidden="true">🕷️</span>
+          <span class="enemy enemy-5" aria-hidden="true">🦟</span>
+
+          <!-- Khối ruộng bậc thang -->
+          <div class="absolute inset-x-4 bottom-6 flex flex-col gap-3 sm:inset-x-10">
+            <div class="grid grid-cols-2 gap-3 sm:grid-cols-4">
+              <div class="h-16 rounded-xl bg-gradient-to-tr from-emerald-700 via-emerald-600 to-lime-400/80 shadow-lg shadow-emerald-900/50"></div>
+              <div class="h-16 rounded-xl bg-gradient-to-tr from-lime-700 via-lime-500 to-emerald-300/80 shadow-lg shadow-lime-900/50"></div>
+              <div class="hidden h-16 rounded-xl bg-gradient-to-tr from-emerald-800 via-emerald-600 to-lime-300/90 shadow-lg shadow-emerald-900/60 sm:block"></div>
+              <div class="hidden h-16 rounded-xl bg-gradient-to-tr from-lime-800 via-lime-600 to-emerald-300/90 shadow-lg shadow-lime-900/60 sm:block"></div>
+            </div>
+            <div class="grid grid-cols-3 gap-3 sm:grid-cols-5">
+              <div class="h-12 rounded-xl bg-gradient-to-tr from-emerald-800 via-emerald-600 to-lime-400 shadow-md shadow-emerald-900/40"></div>
+              <div class="h-12 rounded-xl bg-gradient-to-tr from-lime-700 via-lime-500 to-emerald-300 shadow-md shadow-lime-900/40"></div>
+              <div class="h-12 rounded-xl bg-gradient-to-tr from-emerald-700 via-emerald-500 to-lime-300 shadow-md shadow-emerald-900/40"></div>
+              <div class="hidden h-12 rounded-xl bg-gradient-to-tr from-lime-800 via-lime-600 to-emerald-300 shadow-md shadow-lime-900/40 sm:block"></div>
+              <div class="hidden h-12 rounded-xl bg-gradient-to-tr from-emerald-900 via-emerald-700 to-lime-400 shadow-md shadow-emerald-900/40 sm:block"></div>
+            </div>
+          </div>
+
+          <!-- Cây trồng trĩu quả -->
+          <div class="pointer-events-none absolute bottom-4 left-1/2 flex -translate-x-1/2 gap-3 sm:bottom-5 sm:gap-4">
+            <!-- Cà chua -->
+            <div class="crop-badge flex flex-col items-center rounded-2xl bg-white/90 px-3 py-2 text-xs font-semibold text-emerald-900 ring-1 ring-emerald-100 sm:px-4 sm:py-3">
+              <span class="text-2xl sm:text-3xl">🍅</span>
+              <span>Cà chua</span>
+            </div>
+            <!-- Lúa -->
+            <div class="crop-badge flex flex-col items-center rounded-2xl bg-white/90 px-3 py-2 text-xs font-semibold text-emerald-900 ring-1 ring-emerald-100 sm:px-4 sm:py-3">
+              <span class="text-2xl sm:text-3xl">🌾</span>
+              <span>Lúa</span>
+            </div>
+            <!-- Bắp -->
+            <div class="crop-badge flex flex-col items-center rounded-2xl bg-white/90 px-3 py-2 text-xs font-semibold text-emerald-900 ring-1 ring-emerald-100 sm:px-4 sm:py-3">
+              <span class="text-2xl sm:text-3xl">🌽</span>
+              <span>Bắp</span>
+            </div>
+            <!-- Hoa hồng -->
+            <div class="crop-badge hidden flex-col items-center rounded-2xl bg-white/90 px-3 py-2 text-xs font-semibold text-emerald-900 ring-1 ring-emerald-100 sm:flex sm:px-4 sm:py-3">
+              <span class="text-2xl sm:text-3xl">🌹</span>
+              <span>Hoa hồng</span>
+            </div>
+            <!-- Sầu riêng (minh hoạ bằng quả nhiệt đới) -->
+            <div class="crop-badge hidden flex-col items-center rounded-2xl bg-white/90 px-3 py-2 text-xs font-semibold text-emerald-900 ring-1 ring-emerald-100 sm:flex sm:px-4 sm:py-3">
+              <span class="text-2xl sm:text-3xl">🥭</span>
+              <span>Sầu riêng</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Thông tin ngắn trên hero -->
+        <div class="border-t border-emerald-100 bg-emerald-50/80 px-4 py-3 text-xs text-emerald-900 sm:px-6 sm:py-4 sm:text-sm">
+          <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <p class="font-semibold uppercase tracking-wide text-emerald-800">
+              TÍCH HỢP QUẢN LÝ DỊCH HẠI (IPM) · GIẢM THUỐC HÓA HỌC · ƯU TIÊN THIÊN ĐỊCH
+            </p>
+            <p class="text-xs text-emerald-700 sm:text-right">
+              Tra cứu nhanh <span class="font-semibold">Insecticides, Herbicides, Fungicides, Biologicals &amp; Seed</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Khối tra cứu -->
+    <section id="tra-cuu" class="mt-10">
+      <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <h2 class="text-2xl font-bold text-emerald-900 sm:text-3xl">Tra cứu thông tin thuốc bảo vệ thực vật</h2>
+          <p class="mt-1 max-w-2xl text-sm text-slate-600">
+            Chọn nhóm sản phẩm hoặc nhập từ khóa (tên hoạt chất, nhóm dịch hại, cây trồng...) để tra cứu.
+            Thông tin mang tính chất tham khảo, luôn đọc kỹ nhãn thuốc trước khi sử dụng.
+          </p>
+        </div>
+        <div class="flex items-center gap-2 text-xs text-emerald-700">
+          <span class="h-2 w-2 rounded-full bg-emerald-500"></span> Đề cao an toàn sinh học &amp; môi trường
+        </div>
+      </div>
+
+      <!-- Ô tìm kiếm -->
+      <div class="mt-4 flex flex-col gap-3 rounded-2xl bg-white/80 p-4 shadow-sm shadow-emerald-100 ring-1 ring-emerald-100 sm:flex-row sm:items-center sm:gap-4">
+        <div class="relative flex-1">
+          <span class="pointer-events-none absolute inset-y-0 left-3 flex items-center text-slate-400">🔍</span>
+          <input
+            id="searchInput"
+            type="text"
+            class="w-full rounded-xl border border-emerald-200 bg-emerald-50/60 py-2 pl-9 pr-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-emerald-500 focus:bg-white focus:outline-none focus:ring-2 focus:ring-emerald-400/60"
+            placeholder="Tìm theo tên hoạt chất, nhóm, đối tượng dịch hại, cây trồng..."
+          />
+        </div>
+        <div class="flex flex-wrap items-center gap-2 text-[11px] text-slate-500">
+          <span class="rounded-full bg-emerald-50 px-2 py-1 font-medium text-emerald-700 ring-1 ring-emerald-100">Gợi ý:</span>
+          <button type="button" data-query="neonicotinoid" class="rounded-full bg-slate-50 px-2 py-1 hover:bg-emerald-50">neonicotinoid</button>
+          <button type="button" data-query="đốm lá" class="rounded-full bg-slate-50 px-2 py-1 hover:bg-emerald-50">đốm lá</button>
+          <button type="button" data-query="cỏ lá rộng" class="rounded-full bg-slate-50 px-2 py-1 hover:bg-emerald-50">cỏ lá rộng</button>
+          <button type="button" data-query="biological" class="rounded-full bg-slate-50 px-2 py-1 hover:bg-emerald-50">biological</button>
+        </div>
+      </div>
+
+      <!-- Tabs nhóm sản phẩm -->
+      <div class="mt-5 flex flex-wrap gap-2">
+        <button
+          type="button"
+          class="category-tab inline-flex items-center gap-2 rounded-full bg-emerald-600 px-3 py-1.5 text-xs font-semibold text-white shadow-sm shadow-emerald-400/60 ring-1 ring-emerald-600 data-[active=false]:bg-white data-[active=false]:text-emerald-700 data-[active=false]:ring-emerald-200"
+          data-category="insecticides"
+          data-active="true"
+        >
+          <span class="text-lg">🐛</span>
+          Insecticides
+        </button>
+        <button
+          type="button"
+          class="category-tab inline-flex items-center gap-2 rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-emerald-700 shadow-sm shadow-emerald-100 ring-1 ring-emerald-200"
+          data-category="herbicides"
+          data-active="false"
+        >
+          <span class="text-lg">🌿</span>
+          Herbicides
+        </button>
+        <button
+          type="button"
+          class="category-tab inline-flex items-center gap-2 rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-emerald-700 shadow-sm shadow-emerald-100 ring-1 ring-emerald-200"
+          data-category="fungicides"
+          data-active="false"
+        >
+          <span class="text-lg">🍄</span>
+          Fungicides
+        </button>
+        <button
+          type="button"
+          class="category-tab inline-flex items-center gap-2 rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-emerald-700 shadow-sm shadow-emerald-100 ring-1 ring-emerald-200"
+          data-category="biologicals"
+          data-active="false"
+        >
+          <span class="text-lg">🧫</span>
+          Biologicals
+        </button>
+        <button
+          type="button"
+          class="category-tab inline-flex items-center gap-2 rounded-full bg-white px-3 py-1.5 text-xs font-semibold text-emerald-700 shadow-sm shadow-emerald-100 ring-1 ring-emerald-200"
+          data-category="seed"
+          data-active="false"
+        >
+          <span class="text-lg">🌱</span>
+          Seed
+        </button>
+      </div>
+
+      <!-- Nội dung chi tiết từng nhóm -->
+      <div class="mt-6 grid gap-6 md:grid-cols-[minmax(0,1.6fr)_minmax(0,1.1fr)]">
+        <!-- Danh sách sản phẩm / hoạt chất -->
+        <div class="space-y-4">
+          <!-- Insecticides -->
+          <div id="panel-insecticides" class="category-panel space-y-3" data-panel="insecticides">
+            <!-- Card mô tả chung -->
+            <article class="flex gap-3 rounded-2xl bg-emerald-50/80 p-3 text-xs text-emerald-900 ring-1 ring-emerald-100 sm:p-4 sm:text-sm" data-item>
+              <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-100 text-2xl shadow-sm shadow-emerald-200">🐛</div>
+              <div>
+                <h3 class="font-semibold">Tổng quan Insecticides (Thuốc trừ sâu)</h3>
+                <p class="mt-1 text-xs sm:text-sm">
+                  Dùng để quản lý sâu, côn trùng chích hút và môi giới truyền bệnh. Trong nông nghiệp thông minh, ưu tiên sử dụng liều lượng chính xác,
+                  chọn lọc theo đối tượng, kết hợp bẫy, pheromone và thiên địch để giảm thiểu tồn dư.
+                </p>
+                <p class="mt-1 text-[11px] text-emerald-700 sm:text-xs">Lưu ý: thay đổi nhóm hoạt chất giữa các vụ để hạn chế kháng thuốc.</p>
+              </div>
+            </article>
+
+            <!-- Các nhóm hoạt chất tiêu biểu -->
+            <article class="rounded-2xl bg-white/90 p-3 text-xs ring-1 ring-emerald-100 shadow-sm shadow-emerald-50 sm:p-4" data-item>
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex items-start gap-3">
+                  <div class="mt-1 flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-600 text-lg text-white shadow-sm shadow-emerald-400">A</div>
+                  <div>
+                    <h3 class="text-sm font-semibold text-emerald-900 sm:text-base">Nhóm cúc tổng hợp (Pyrethroids)</h3>
+                    <p class="mt-1 text-xs text-slate-600">
+                      Ví dụ: cypermethrin, deltamethrin. Tác động tiếp xúc, vị độc, trừ nhanh nhiều loại sâu ăn lá trên lúa, bắp, rau màu.
+                    </p>
+                    <p class="mt-1 text-[11px] text-emerald-700">
+                      Ưu điểm: hạ gục nhanh. Hạn chế: dễ ảnh hưởng thiên địch và ong thụ phấn, cần phun đúng thời điểm chiều mát.
+                    </p>
+                  </div>
+                </div>
+                <div class="rounded-xl bg-emerald-50 px-2 py-1 text-[10px] font-semibold uppercase tracking-wide text-emerald-700">
+                  Tiếp xúc · Vị độc
+                </div>
+              </div>
+              <dl class="mt-2 grid grid-cols-2 gap-2 text-[11px] text-slate-500 sm:text-xs">
+                <div>
+                  <dt class="font-semibold text-slate-700">Dịch hại chính</dt>
+                  <dd>Sâu tơ, sâu xanh, sâu cuốn lá, sâu đục thân lúa</dd>
+                </div>
+                <div>
+                  <dt class="font-semibold text-slate-700">Lưu ý an toàn</dt>
+                  <dd>Giữ khoảng cách với nguồn nước, mang đầy đủ bảo hộ, tuân thủ thời gian cách ly.</dd>
+                </div>
+              </dl>
+            </article>
+
+            <article class="rounded-2xl bg-white/90 p-3 text-xs ring-1 ring-emerald-100 shadow-sm shadow-emerald-50 sm:p-4" data-item>
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex items-start gap-3">
+                  <div class="mt-1 flex h-9 w-9 items-center justify-center rounded-lg bg-teal-600 text-lg text-white shadow-sm shadow-teal-400">N</div>
+                  <div>
+                    <h3 class="text-sm font-semibold text-emerald-900 sm:text-base">Nhóm neonicotinoid</h3>
+                    <p class="mt-1 text-xs text-slate-600">
+                      Ví dụ: imidacloprid, thiamethoxam. Hoạt tính lưu dẫn, rất hiệu quả với rầy nâu, rầy xanh, bọ trĩ, bọ xít muỗi.
+                    </p>
+                    <p class="mt-1 text-[11px] text-emerald-700">
+                      Ứng dụng tốt trong hệ thống tưới nhỏ giọt, seed treatment để bảo vệ giai đoạn cây con.
+                    </p>
+                  </div>
+                </div>
+                <div class="rounded-xl bg-teal-50 px-2 py-1 text-[10px] font-semibold uppercase tracking-wide text-teal-700">
+                  Lưu dẫn
+                </div>
+              </div>
+              <dl class="mt-2 grid grid-cols-2 gap-2 text-[11px] text-slate-500 sm:text-xs">
+                <div>
+                  <dt class="font-semibold text-slate-700">Cây trồng</dt>
+                  <dd>Lúa, bắp, cây ăn trái, hoa hồng, cà chua</dd>
+                </div>
+                <div>
+                  <dt class="font-semibold text-slate-700">Lưu ý an toàn</dt>
+                  <dd>Hạn chế phun khi hoa nở rộ để bảo vệ ong; tuân thủ khuyến cáo về liều lượng.</dd>
+                </div>
+              </dl>
+            </article>
+
+            <article class="rounded-2xl bg-white/90 p-3 text-xs ring-1 ring-emerald-100 shadow-sm shadow-emerald-50 sm:p-4" data-item>
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex items-start gap-3">
+                  <div class="mt-1 flex h-9 w-9 items-center justify-center rounded-lg bg-amber-500 text-lg text-white shadow-sm shadow-amber-400">B.t</div>
+                  <div>
+                    <h3 class="text-sm font-semibold text-emerald-900 sm:text-base">Chế phẩm sinh học (Bt, nấm ký sinh)</h3>
+                    <p class="mt-1 text-xs text-slate-600">
+                      Sử dụng <em>Bacillus thuringiensis</em>, nấm xanh, nấm trắng... đặc hiệu trên sâu ăn lá, rầy rệp, an toàn cho thiên địch.
+                    </p>
+                    <p class="mt-1 text-[11px] text-emerald-700">
+                      Phù hợp mô hình VietGAP, GlobalGAP, hữu cơ; hiệu quả cao khi áp dụng phòng ngừa, mật số sâu còn thấp.</p>
+                  </div>
+                </div>
+                <div class="rounded-xl bg-amber-50 px-2 py-1 text-[10px] font-semibold uppercase tracking-wide text-amber-700">
+                  Sinh học
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Herbicides -->
+          <div id="panel-herbicides" class="category-panel hidden space-y-3" data-panel="herbicides">
+            <article class="flex gap-3 rounded-2xl bg-emerald-50/80 p-3 text-xs text-emerald-900 ring-1 ring-emerald-100 sm:p-4 sm:text-sm" data-item>
+              <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-100 text-2xl shadow-sm shadow-emerald-200">🌿</div>
+              <div>
+                <h3 class="font-semibold">Tổng quan Herbicides (Thuốc trừ cỏ)</h3>
+                <p class="mt-1 text-xs sm:text-sm">
+                  Dùng để quản lý cỏ dại cạnh tranh dinh dưỡng, ánh sáng với cây trồng. Ứng dụng cảm biến cỏ, phun chọn lọc và bản đồ hóa sinh khối
+                  giúp giảm lượng thuốc và hạn chế tác động đến môi trường.
+                </p>
+              </div>
+            </article>
+
+            <article class="rounded-2xl bg-white/90 p-3 text-xs ring-1 ring-emerald-100 shadow-sm shadow-emerald-50 sm:p-4" data-item>
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex items-start gap-3">
+                  <div class="mt-1 flex h-9 w-9 items-center justify-center rounded-lg bg-lime-600 text-lg text-white shadow-sm shadow-lime-400">Tiền</div>
+                  <div>
+                    <h3 class="text-sm font-semibold text-emerald-900 sm:text-base">Thuốc tiền nảy mầm</h3>
+                    <p class="mt-1 text-xs text-slate-600">
+                      Ví dụ: butachlor, pendimethalin. Phun ngay sau gieo sạ để khống chế hạt cỏ nảy mầm, hiệu quả với cỏ lồng vực, cỏ đuôi phụng.
+                    </p>
+                  </div>
+                </div>
+                <div class="rounded-xl bg-lime-50 px-2 py-1 text-[10px] font-semibold uppercase tracking-wide text-lime-700">
+                  Cỏ sớm
+                </div>
+              </div>
+            </article>
+
+            <article class="rounded-2xl bg-white/90 p-3 text-xs ring-1 ring-emerald-100 shadow-sm shadow-emerald-50 sm:p-4" data-item>
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex items-start gap-3">
+                  <div class="mt-1 flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-700 text-lg text-white shadow-sm shadow-emerald-500">H</div>
+                  <div>
+                    <h3 class="text-sm font-semibold text-emerald-900 sm:text-base">Thuốc hậu nảy mầm chọn lọc</h3>
+                    <p class="mt-1 text-xs text-slate-600">
+                      Ví dụ: bispyribac-sodium, penoxsulam... Diệt cỏ mà an toàn cho lúa/bắp. Có thể tích hợp với hệ thống phun chính xác bằng drone.
+                    </p>
+                  </div>
+                </div>
+                <div class="rounded-xl bg-emerald-50 px-2 py-1 text-[10px] font-semibold uppercase tracking-wide text-emerald-700">
+                  Chọn lọc
+                </div>
+              </div>
+              <p class="mt-2 text-[11px] text-emerald-700 sm:text-xs">
+                Lưu ý đọc kỹ danh mục cỏ mục tiêu (cỏ lá rộng, lá hẹp, cỏ lồng vực...) để lựa chọn hoạt chất phù hợp.
+              </p>
+            </article>
+          </div>
+
+          <!-- Fungicides -->
+          <div id="panel-fungicides" class="category-panel hidden space-y-3" data-panel="fungicides">
+            <article class="flex gap-3 rounded-2xl bg-emerald-50/80 p-3 text-xs text-emerald-900 ring-1 ring-emerald-100 sm:p-4 sm:text-sm" data-item>
+              <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-100 text-2xl shadow-sm shadow-emerald-200">🍄</div>
+              <div>
+                <h3 class="font-semibold">Tổng quan Fungicides (Thuốc trừ bệnh)</h3>
+                <p class="mt-1 text-xs sm:text-sm">
+                  Phòng trừ nấm bệnh, vi khuẩn gây hại trên lá, thân, rễ, quả. Trong nông nghiệp thông minh, dữ liệu thời tiết và cảm biến ẩm độ
+                  được dùng để dự báo sớm và phun phòng ngừa hợp lý.
+                </p>
+              </div>
+            </article>
+
+            <article class="rounded-2xl bg-white/90 p-3 text-xs ring-1 ring-emerald-100 shadow-sm shadow-emerald-50 sm:p-4" data-item>
+              <div class="flex items-start gap-3">
+                <div class="mt-1 flex h-9 w-9 items-center justify-center rounded-lg bg-indigo-600 text-lg text-white shadow-sm shadow-indigo-400">TC</div>
+                <div>
+                  <h3 class="text-sm font-semibold text-emerald-900 sm:text-base">Nhóm Triazole &amp; Strobilurin</h3>
+                  <p class="mt-1 text-xs text-slate-600">
+                    Ví dụ: propiconazole, difenoconazole, azoxystrobin. Phổ tác động rộng, trị hiệu quả bệnh đạo ôn, khô vằn, rỉ sắt, đốm lá trên lúa,
+                    bắp, cà chua, hoa hồng.
+                  </p>
+                  <p class="mt-1 text-[11px] text-emerald-700">
+                    Ưu tiên phun phòng trước khi bệnh bộc phát nặng, luân phiên hoạt chất để giảm kháng thuốc.</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="rounded-2xl bg-white/90 p-3 text-xs ring-1 ring-emerald-100 shadow-sm shadow-emerald-50 sm:p-4" data-item>
+              <div class="flex items-start gap-3">
+                <div class="mt-1 flex h-9 w-9 items-center justify-center rounded-lg bg-sky-600 text-lg text-white shadow-sm shadow-sky-400">ĐC</div>
+                <div>
+                  <h3 class="text-sm font-semibold text-emerald-900 sm:text-base">Đồng &amp; lưu huỳnh dạng mới</h3>
+                  <p class="mt-1 text-xs text-slate-600">
+                    Các dạng hạt mịn, huyền phù dễ hòa nước, ít gây cháy lá. Dùng rộng rãi trên cây ăn trái, hoa màu, cây công nghiệp.</p>
+                  <p class="mt-1 text-[11px] text-emerald-700">Phù hợp chương trình sản xuất nông sản an toàn, thời gian cách ly ngắn.</p>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Biologicals -->
+          <div id="panel-biologicals" class="category-panel hidden space-y-3" data-panel="biologicals">
+            <article class="flex gap-3 rounded-2xl bg-emerald-50/80 p-3 text-xs text-emerald-900 ring-1 ring-emerald-100 sm:p-4 sm:text-sm" data-item>
+              <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-100 text-2xl shadow-sm shadow-emerald-200">🧫</div>
+              <div>
+                <h3 class="font-semibold">Biologicals (Chế phẩm sinh học)</h3>
+                <p class="mt-1 text-xs sm:text-sm">
+                  Bao gồm vi sinh vật đối kháng, nấm ký sinh, thiên địch ký sinh trứng – ấu trùng, chiết xuất thực vật, pheromone…
+                  Là trụ cột của nông nghiệp xanh và IPM.
+                </p>
+              </div>
+            </article>
+
+            <article class="rounded-2xl bg-white/90 p-3 text-xs ring-1 ring-emerald-100 shadow-sm shadow-emerald-50 sm:p-4" data-item>
+              <div class="flex items-start gap-3">
+                <div class="mt-1 flex h-9 w-9 items-center justify-center rounded-lg bg-amber-500 text-lg text-white shadow-sm shadow-amber-400">Tr</div>
+                <div>
+                  <h3 class="text-sm font-semibold text-emerald-900 sm:text-base">Vi khuẩn &amp; nấm đối kháng</h3>
+                  <p class="mt-1 text-xs text-slate-600">
+                    <em>Trichoderma</em>, <em>Pseudomonas</em>... xử lý đất, giá thể, hạt giống để hạn chế nấm bệnh hại rễ, vàng lá, héo rũ.</p>
+                  <p class="mt-1 text-[11px] text-emerald-700">Hiệu quả bền vững khi kết hợp hữu cơ hoai mục, cải tạo hệ vi sinh đất.</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="rounded-2xl bg-white/90 p-3 text-xs ring-1 ring-emerald-100 shadow-sm shadow-emerald-50 sm:p-4" data-item>
+              <div class="flex items-start gap-3">
+                <div class="mt-1 flex h-9 w-9 items-center justify-center rounded-lg bg-rose-500 text-lg text-white shadow-sm shadow-rose-400">P</div>
+                <div>
+                  <h3 class="text-sm font-semibold text-emerald-900 sm:text-base">Pheromone &amp; bẫy thông minh</h3>
+                  <p class="mt-1 text-xs text-slate-600">
+                    Dùng bẫy pheromone, bẫy đèn tích hợp camera, AI nhận diện côn trùng để theo dõi mật số sâu, quyết định phun thuốc hợp lý.</p>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Seed -->
+          <div id="panel-seed" class="category-panel hidden space-y-3" data-panel="seed">
+            <article class="flex gap-3 rounded-2xl bg-emerald-50/80 p-3 text-xs text-emerald-900 ring-1 ring-emerald-100 sm:p-4 sm:text-sm" data-item>
+              <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-100 text-2xl shadow-sm shadow-emerald-200">🌱</div>
+              <div>
+                <h3 class="font-semibold">Seed (Hạt giống &amp; xử lý hạt giống)</h3>
+                <p class="mt-1 text-xs sm:text-sm">
+                  Hạt giống chất lượng cao, xử lý sẵn thuốc trừ nấm – trừ côn trùng, vi sinh vật có ích giúp bảo vệ cây con trong những tuần đầu,
+                  khởi đầu vụ mùa khỏe mạnh.
+                </p>
+              </div>
+            </article>
+
+            <article class="rounded-2xl bg-white/90 p-3 text-xs ring-1 ring-emerald-100 shadow-sm shadow-emerald-50 sm:p-4" data-item>
+              <div class="flex items-start gap-3">
+                <div class="mt-1 flex h-9 w-9 items-center justify-center rounded-lg bg-purple-600 text-lg text-white shadow-sm shadow-purple-400">ST</div>
+                <div>
+                  <h3 class="text-sm font-semibold text-emerald-900 sm:text-base">Hạt giống xử lý sẵn (Seed treatment)</h3>
+                  <p class="mt-1 text-xs text-slate-600">
+                    Phủ lớp hoạt chất trừ nấm – côn trùng, vi lượng, chất kích thích sinh trưởng dạng vi hạt bám trên vỏ hạt.
+                    Phù hợp gieo trồng cơ giới, canh tác chính xác.
+                  </p>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Thông báo không tìm thấy -->
+          <p id="noResultMessage" class="hidden rounded-xl bg-amber-50 px-3 py-2 text-xs text-amber-800 ring-1 ring-amber-100">
+            Không tìm thấy mục phù hợp với từ khóa. Thử đổi từ khóa khác hoặc chọn nhóm sản phẩm khác.
+          </p>
+        </div>
+
+        <!-- Bảng hướng dẫn nhanh & IPM -->
+        <aside class="space-y-4">
+          <div class="rounded-2xl bg-emerald-900 px-4 py-4 text-sm text-emerald-50 shadow-lg shadow-emerald-900/50 sm:px-5 sm:py-5">
+            <h3 class="flex items-center gap-2 text-base font-semibold">
+              <span class="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-700 text-lg">🧠</span>
+              Hướng dẫn sử dụng thuốc theo IPM
+            </h3>
+            <ol class="mt-3 list-decimal space-y-1 pl-5 text-xs text-emerald-100 sm:text-sm">
+              <li>Khảo sát đồng ruộng, xác định đúng dịch hại &amp; ngưỡng phòng trừ.</li>
+              <li>Ưu tiên biện pháp canh tác, cơ giới, sinh học trước.</li>
+              <li>Chọn đúng nhóm thuốc, luân phiên hoạt chất, tránh lạm dụng.</li>
+              <li>Phun đúng lúc, đúng liều, đảm bảo thời gian cách ly.</li>
+              <li>Bảo vệ thiên địch, ong thụ phấn và nguồn nước xung quanh.</li>
+            </ol>
+          </div>
+
+          <div class="rounded-2xl bg-white/90 p-4 text-xs text-slate-700 ring-1 ring-emerald-100 shadow-sm shadow-emerald-50 sm:text-sm">
+            <h3 class="flex items-center gap-2 text-sm font-semibold text-emerald-900 sm:text-base">
+              <span class="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-100 text-lg">🛰️</span>
+              Nông nghiệp thông minh trên cánh đồng của bạn
+            </h3>
+            <ul class="mt-2 list-disc space-y-1 pl-5">
+              <li>Kết nối trạm thời tiết, cảm biến ẩm, ứng dụng di động để dự báo dịch hại.</li>
+              <li>Sử dụng drone, máy phun chính xác để giảm thất thoát và tiếp xúc trực tiếp.</li>
+              <li>Ghi chép nhật ký điện tử, truy xuất nguồn gốc nông sản.</li>
+              <li>Kết hợp thiên địch, bẫy sinh học và phân hữu cơ vi sinh cho hệ sinh thái cân bằng.</li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Slogan cuối trang -->
+    <section class="mt-10 rounded-3xl bg-gradient-to-r from-emerald-700 via-emerald-600 to-lime-500 px-4 py-6 text-center text-emerald-50 shadow-xl shadow-emerald-500/40 sm:px-8 sm:py-8">
+      <p class="text-[11px] uppercase tracking-[0.25em] text-emerald-100 sm:text-xs">
+        Cam kết vì một nền nông nghiệp tuần hoàn · Ít hóa chất · Nhiều thiên địch
+      </p>
+      <p class="mt-3 text-balance text-xl font-extrabold tracking-wide text-white sm:text-3xl">
+        NÔNG NGHIỆP XANH - CHO THẾ HỆ MAI SAU
+      </p>
+      <p class="mt-2 text-xs text-emerald-100 sm:text-sm">
+        Ứng dụng khoa học bảo vệ thực vật, công nghệ số và sức mạnh của hệ sinh thái tự nhiên
+        để nuôi dưỡng những cánh đồng cà chua, lúa, bắp, hoa hồng, sầu riêng luôn xanh tốt.
+      </p>
+    </section>
+
+    <footer class="mt-6 text-center text-[11px] text-slate-400">
+      Thông tin trên trang chỉ mang tính tham khảo kỹ thuật. Luôn tuân thủ quy định về sử dụng thuốc bảo vệ thực vật của địa phương.
+    </footer>
+  </div>
+
+  <script>
+    // Xử lý chuyển tab nhóm sản phẩm
+    const tabs = document.querySelectorAll('.category-tab');
+    const panels = document.querySelectorAll('.category-panel');
+    const searchInput = document.getElementById('searchInput');
+    const noResultMessage = document.getElementById('noResultMessage');
+    const suggestionButtons = document.querySelectorAll('[data-query]');
+
+    function setActiveCategory(category) {
+      tabs.forEach((tab) => {
+        const isActive = tab.dataset.category === category;
+        tab.dataset.active = isActive;
+        if (isActive) {
+          tab.classList.remove('bg-white', 'text-emerald-700', 'ring-emerald-200');
+          tab.classList.add('bg-emerald-600', 'text-white', 'ring-emerald-600', 'shadow-emerald-400/60');
+        } else {
+          tab.classList.remove('bg-emerald-600', 'text-white', 'ring-emerald-600', 'shadow-emerald-400/60');
+          tab.classList.add('bg-white', 'text-emerald-700', 'ring-emerald-200');
+        }
+      });
+
+      panels.forEach((panel) => {
+        if (panel.dataset.panel === category) {
+          panel.classList.remove('hidden');
+        } else {
+          panel.classList.add('hidden');
+        }
+      });
+
+      filterItems();
+    }
+
+    function getActivePanel() {
+      const activeTab = document.querySelector('.category-tab[data-active="true"]');
+      if (!activeTab) return null;
+      const category = activeTab.dataset.category;
+      return document.querySelector('.category-panel[data-panel="' + category + '"]');
+    }
+
+    function filterItems() {
+      const term = searchInput.value.trim().toLowerCase();
+      const panel = getActivePanel();
+      if (!panel) return;
+
+      const items = panel.querySelectorAll('[data-item]');
+      let visibleCount = 0;
+
+      items.forEach((item) => {
+        if (!term) {
+          item.classList.remove('hidden');
+          visibleCount++;
+          return;
+        }
+        const text = item.textContent.toLowerCase();
+        if (text.includes(term)) {
+          item.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+
+      if (term && visibleCount === 0) {
+        noResultMessage.classList.remove('hidden');
+      } else {
+        noResultMessage.classList.add('hidden');
+      }
+    }
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        setActiveCategory(tab.dataset.category);
+      });
+    });
+
+    searchInput.addEventListener('input', filterItems);
+
+    suggestionButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const query = btn.dataset.query || '';
+        searchInput.value = query;
+        searchInput.focus();
+        filterItems();
+      });
+    });
+
+    // Khởi tạo
+    document.addEventListener('DOMContentLoaded', () => {
+      setActiveCategory('insecticides');
+    });
+  </script>
+</body>
+</html>
